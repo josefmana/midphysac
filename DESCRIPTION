@@ -35,6 +35,7 @@ Imports:
     bestNormalize,
     MatchIt,
     cobalt,
-    glue
+    glue,
+    rstatix
 Suggests: 
     rmarkdown

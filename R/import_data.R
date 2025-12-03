@@ -28,7 +28,8 @@ import_data <- function(
       `Regular-PA`, MMSE, GDS15, GAI, FAQ, `Total-mental-activities`, Health, # outcomes
       RAVLT_delayed_recall, TMT_B_time, Spon_sem, VF_animals, # SuperAging variables raw scores
       `SA-TMT-B-new`, `SA-BNT-new`, `SA-VF`, # SuperAging indicators
-      Z_RAVLT_PVLT_delayed_recall, Z_TMT_B_uds, Z_BNT_new, Z_VF_uds # SuperAging variables z scores
+      Z_RAVLT_PVLT_delayed_recall, Z_TMT_B_uds, Z_BNT_new, Z_VF_uds, # SuperAging variables z scores
+      `Do_you_smoke?`, Hypertension, Diabetes # health-related covariates
     ) |>
     dplyr::mutate(
       mPA = factor(
@@ -111,7 +112,11 @@ import_data <- function(
       )),
       Anx = factor(dplyr::if_else(
         GAI > 10, 1, 0
-      ))
+      )),
+      dplyr::across(
+        .cols = tidyselect::all_of(c("Do_you_smoke?", "Hypertension", "Diabetes")),
+        .fns = \(x) factor(2 - x)
+      )
     ) |>
     # Re-naming variables:
     dplyr::rename(
@@ -127,13 +132,15 @@ import_data <- function(
       "BNT_30_SA" = "SA-BNT-new",
       "VF_Animals_raw" = "VF_animals",
       "VF_Animals_z" = "Z_VF_uds",
-      "VF_Animals_SA" = "SA-VF"
+      "VF_Animals_SA" = "SA-VF",
+      "Smoking" = "Do_you_smoke?"
     ) |>
     dplyr::select(
       ID, mPA, Cosactiw, Age, Age_bin, Education,
       SA, cPA, Z_SA, MMSE, GDS15, GAI, FAQ, Depr, Anx,
       Total_MA, Health, Profession, Status,
-      cutoff, tidyselect::ends_with("_raw"), tidyselect::ends_with("_z"), tidyselect::ends_with("_SA")
+      cutoff, tidyselect::ends_with("_raw"), tidyselect::ends_with("_z"), tidyselect::ends_with("_SA"),
+      Smoking, Hypertension, Diabetes
     )
 }
 

@@ -4,7 +4,7 @@
 #' using specified method and formula, including balance checks.
 #' For now, estimand it fixed to "ATC."
 #'
-#' @param data Tibble or data frame. Raw data.
+#' @param d0 Tibble or data frame. Raw data.
 #' @param sets Tibble or data frame. Adjustment sets, ideally
 #'   derived from a causal model such as DAG.
 #' @param dist Character. Method of matching, pushed to
@@ -28,7 +28,7 @@
 #'
 #' @export
 perform_matching <- function(
-    data,
+    d0,
     sets,
     dist = "glm",
     link = "logit"
@@ -38,17 +38,30 @@ perform_matching <- function(
     formula = unique(sets$matching),
     estimand = "ATC"
   )
-  #
-  # Should add check for estimands being ----
-  # the same in `sets` and `X` ----
-  #
+  # dirty trick to add health relate covatiates ----
+  X <- X |>
+    dplyr::full_join(
+      X |> dplyr::mutate(formula = glue::glue(
+        "{formula} + Hypertension + Diabetes"
+      )),
+      by = dplyr::join_by(formula, estimand)
+    )
+  # Prepare data for health covariates analysis:
+  d1 <- d0 |>
+    dplyr::select(ID, mPA, Cosactiw, Age, Education, cPA, Hypertension, Diabetes) |>
+    tidyr::drop_na()
   # Propensity scores matching:
   labs <- rlang::set_names(x = seq_len(nrow(X)), nm = X$formula)
   fit0 <- lapply(labs, function(i) {
     with(X, {
+      if (stringr::str_detect(formula[i], "Hypertension")) {
+        df <- d1
+      } else {
+        df <- d0
+      }
       MatchIt::matchit(
         formula = as.formula(formula[i]),
-        data = data,
+        data = df,
         method = "full",
         distance = dist,
         link = link,

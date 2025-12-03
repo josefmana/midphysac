@@ -32,7 +32,7 @@ fit_models <- function(
     }
   }
   # Optionally do normalization:
-  use_transform <- any(c("transformed", "g-computation") %in% specs$estimate)
+  use_transform <- any(c("transformed", "g-computation", "g-computation_plus") %in% specs$estimate)
   if (use_transform) {
     trans_y <- specs |>
       dplyr::filter(likelihood == "gaussian") |>
@@ -64,7 +64,7 @@ fit_models <- function(
     lapply(labs, function(i) {
       form <- model_specs$formula[i]
       like <- model_specs$likelihood[i]
-      if (t == "g-computation") {
+      if (stringr::str_detect(t, "g-computation")) {
         matching <- model_specs$matching[i]
         md <- match$data[[matching]] |>
           dplyr::select(ID, mPA, distance, weights, subclass)
@@ -74,7 +74,7 @@ fit_models <- function(
         df <- data
       }
       wts <- unlist(ifelse(
-        t == "g-computation",
+        stringr::str_detect(t, "g-computation"),
         list(df$weights),
         list(NULL)
       ), use.names = FALSE)

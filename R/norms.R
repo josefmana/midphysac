@@ -30,7 +30,7 @@ ravlt_ss <- function(raw) {
 }
 
 
-#' Find memory thresholds for superaging
+#' Find memory thresholds for SuperAging
 #'
 #' Using normative values of RAVLT and PVLT raw normative
 #' data.
@@ -108,7 +108,7 @@ extract_thresholds <- function(
   }
   # Compute threshold values, i.e., expected value for a women
   # in 60-64 years age category and their 95% CIs
-  thresholds <- purrr::map_dfr( c("ravlt", "pvlt"), function(task) {
+  thresholds <- purrr::map_dfr(c("ravlt", "pvlt"), function(task) {
     sapply(c("M", "S", "N"), function(fun) {
       sapply(c("lower", "higher"), function(l) {
         do.call(fun, list(subset(get(task), age_cat == "60-64" & edu == l)$raw))

@@ -39,6 +39,9 @@ model_specs <- function(table) {
             .default = adjusted
           ),
           `g-computation` = transformed,
+          `g-computation_plus` = stringr::str_replace(
+            `g-computation`, "\\)", " + Hypertension + Diabetes\\)"
+          ),
           estimand = "ATC",
           control = dplyr::case_when(
             exposure == "cPA" ~ "0",
@@ -61,8 +64,13 @@ model_specs <- function(table) {
     })
   }) |>
     tidyr::pivot_longer(
-      cols = c("unadjusted", "adjusted", "transformed", "g-computation"),
+      cols = c("unadjusted", "adjusted", "transformed", "g-computation", "g-computation_plus"),
       values_to = "formula",
       names_to = "estimate"
-    )
+    ) |>
+    dplyr::mutate(matching = dplyr::if_else(
+      estimate == "g-computation_plus",
+      true = glue::glue("{matching} + Hypertension + Diabetes"),
+      false = matching
+    ))
 }

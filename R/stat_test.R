@@ -29,7 +29,7 @@ stat_test <- function(
   for (i in names(fits)) {
     mods <- fits[[i]]
     mod_specs <- subset(specs, estimate == i)
-    if (i == "g-computation") {
+    if (stringr::str_detect(i, "g-computation")) {
       est[[i]] <- compute_predictions(mods, mod_specs)
       comp[[i]] <- g_computations(mods, mod_specs, matches$data)
     } else {
@@ -41,7 +41,7 @@ stat_test <- function(
   # Do residual checks:
   check <- lapply(rlang::set_names(names(fits)), function(i) {
     purrr::map_dbl(rlang::set_names(names(fits[[i]])), function(j) {
-      if (i == "g-computation") {
+      if (stringr::str_detect(i, "g-computation")) {
         NA # Skip in case of g-computation as the check fails due to weights.
       } else {
         performance::check_residuals(fits[[i]][[j]]) |>
