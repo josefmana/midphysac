@@ -28,5 +28,9 @@ targets_results <- list(
       type = "2",
       save = TRUE
     )
+  ),
+  targets::tar_target(
+    results_tables,
+    command = table_results(results)
   )
 )
