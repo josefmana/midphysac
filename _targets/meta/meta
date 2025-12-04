@@ -18,18 +18,15 @@ save_tables|function|9a9bf38b0fd69ae9
 adjustment_sets|stem|5dad8f5ce4d45a00|daa8c5f1a8b005ce|db19e8f1ee3dc80a|-1854510410||t20416.7883048713s|s505b|505|rds|local|vector|||0.671||
 data|stem|9846cb011975a1db|d37010a0d207e2eb|982c3d02766c0ee6|33550471||t20425.5528898508s|s12075b|12075|rds|local|vector|||0.277||
 matches|stem|e1954bb4efaa77f2|18685e365704b69d|d91dbb1bed5c75e6|292580782||t20425.5952373093s|s2413854b|2413854|rds|local|vector|||1.085||
-cognition_plot|stem|b1c67c296c5d1deb|2dd5b2e0b566f8b1|4ec44fab688b655f|-34129545||t20425.5959508453s|s406449b|406449|rds|local|vector|||0.35|Removed 6 rows containing non-finite outside the scale range (`stat_ydensity()`).. Removed 6 rows containing non-finite outside the scale range (`stat_boxplot()`).. Removed 6 rows containing non-finite outside the scale range (`stat_summary()`).|
-specs|stem|b01027c6b1252ac1|e595c95487dbd6d0|d3886a4802666c11|-2050852063||t20425.7962592773s|s1629b|1629|rds|local|vector|||0.235||
-models|stem|f53c904947cbd36d|e6c71802e003d0df|5e1cc234784c5f25|-1655822660||t20425.7965200656s|s14941154b|14941154|rds|local|vector|||20.255|non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!|
-results|stem|f0915037e75b5548|017f848dd6546ca3|962912457868d7b1|-322906963||t20425.7966895042s|s10228b|10228|rds|local|vector|||13.855|Using an external vector in selections was deprecated in tidyselect 1.1.0. ℹ Please use `all_of()` or `any_of()` instead.   # Was:   data %>% select(estimate)    # Now:   data %>% select(all_of(estimate))  See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.|
-diagnostics|stem|2a940014dc4fde29|468a9a0848bf7b40|5c6c17590f253977|1806411824||t20425.7969781206s|s115858660b|115858660|rds|local|vector|||18.429||
-results_plot|stem|6309bb31ddb50f32|154cf70c6b5d3a9d|4ec44fab688b655f|-1141224548||t20425.7969953961s|s1743952b|1743952|rds|local|vector|||1.118|Removed 1 row containing non-finite outside the scale range (`stat_smooth()`).. Removed 1 row containing missing values or values outside the scale range (`geom_point()`).|
+results_plot_comparisons|stem|2ac39c2e6c71a898|d566bca951b115a9|d7fc2bfb75a9fb3a|-1551094388||t20426.4150995949s|s256510b|256510|rds|local|vector|||0.248||
+cognition_plot|stem|0c3bd3838956abd3|2dd5b2e0b566f8b1|93f261c217141157|-34129545||t20426.6255514223s|s406948b|406948|rds|local|vector|||0.34|Removed 6 rows containing non-finite outside the scale range (`stat_ydensity()`).. Removed 6 rows containing non-finite outside the scale range (`stat_boxplot()`).. Removed 6 rows containing non-finite outside the scale range (`stat_summary()`).|
 compare_means|function|a28c4f10a57b110b
 ravlt_ss|function|352eb7a38e2a1d4e
 remove_brackets|function|db1d8fe897b2aba1
 compute_predictions|function|661d9d78e7e88c38
+plot_compare_results|function|c7083db9fa542a01
 rprint|function|be663e81e9071354
-plot_results|function|c41a02f1085cb0a9
+plot_results|function|a5f82efb969cfdb9
 set2equation|function|fdff19801ee50ec2
 draw_dag|function|2474868b01ba3dc9
 g_computations|function|3f29a4abd19f002d
@@ -48,5 +45,10 @@ zerolead|function|4c0b2bf2f68d8ea6
 adjustment_table|function|2e4cd8b7ee990645
 table_single|function|87e957ea6ecbe045
 stat_test|function|58875e8e26d01cbe
-table_results|function|72f0489c5cdb04d5
-results_tables|stem|0ea74c1c9a5df6de|cd9bdb0081e4bfb2|09cc125d03e5ad72|1927127624||t20425.8896739654s|s25349b|25349|rds|local|vector|||0.242||
+table_results|function|ce724e9cc6f806dc
+specs|stem|b01027c6b1252ac1|e595c95487dbd6d0|d3886a4802666c11|-2050852063||t20426.6296199736s|s1629b|1629|rds|local|vector|||0.213||
+models|stem|f53c904947cbd36d|e6c71802e003d0df|5e1cc234784c5f25|-1655822660||t20426.6298894182s|s14941154b|14941154|rds|local|vector|||20.946|non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!|
+results|stem|f0915037e75b5548|017f848dd6546ca3|962912457868d7b1|-322906963||t20426.6300666144s|s10228b|10228|rds|local|vector|||14.505|Using an external vector in selections was deprecated in tidyselect 1.1.0. ℹ Please use `all_of()` or `any_of()` instead.   # Was:   data %>% select(estimate)    # Now:   data %>% select(all_of(estimate))  See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.|
+diagnostics|stem|abce222feaf22e1a|468a9a0848bf7b40|5c6c17590f253977|1806411824||t20426.6303306309s|s115858569b|115858569|rds|local|vector|||16.82||
+results_tables|stem|931d4b8bd0fdd8a8|cd9bdb0081e4bfb2|e15291d40c15941c|1927127624||t20426.6303329087s|s25131b|25131|rds|local|vector|||0.128||
+results_plot|stem|82fb20db03467cca|154cf70c6b5d3a9d|93f261c217141157|-1141224548||t20426.6303485474s|s1745461b|1745461|rds|local|vector|||1.096|Removed 1 row containing non-finite outside the scale range (`stat_smooth()`).. Removed 1 row containing missing values or values outside the scale range (`geom_point()`).|

@@ -32,5 +32,9 @@ targets_results <- list(
   targets::tar_target(
     results_tables,
     command = table_results(results)
+  ),
+  targets::tar_target(
+    results_plot_comparisons,
+    command = plot_compare_results(results)
   )
 )
