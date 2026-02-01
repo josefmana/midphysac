@@ -118,8 +118,8 @@ extract_thresholds <- function(
       tibble::rownames_to_column("edu") |>
       dplyr::mutate(
         df = N - 1,
-        low_CI = M + ( S / sqrt(N) ) * qt(.025, df),
-        high_CI = M - ( S / sqrt(N) ) * qt(.025, df),
+        low_CI = M + (S / sqrt(N)) * qt(.025, df),
+        high_CI = M - (S / sqrt(N)) * qt(.025, df),
         thresh_mean = ceiling(M),
         thresh_low = ceiling(low_CI),
         thresh_high = ceiling(high_CI),
