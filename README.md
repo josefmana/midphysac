@@ -1,6 +1,7 @@
 # midphysac
 
 <!-- badges: start -->
+[![DOI](https://zenodo.org/badge/843845244.svg)](https://doi.org/10.5281/zenodo.20339953)
 <!-- badges: end -->
 
 The goal of **midphysac** is to accompany the articles about putative effect of
