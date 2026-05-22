@@ -209,6 +209,5 @@ plot_results <- function(
         width = dplyr::case_when(type == 1 ~ 9.0, type == 2 ~ 7.5)
       )
     }
-  }
   plt
 }

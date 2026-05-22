@@ -3,6 +3,8 @@ Rplots.pdf
 data-raw/
 docs/
 figures/
+tables/
+_texts/
 
 # History files
 .Rprofile
@@ -55,3 +57,4 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 .Rproj.user
+.positai

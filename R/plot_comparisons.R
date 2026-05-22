@@ -33,12 +33,12 @@ plot_comparisons <- function(
   if (rlang::is_empty(vars)) {
     vars <- tibble::tibble(
       label = c(
-        "SuperAging",
+        "SuperAger Status",
         "Current PA",
         "Cognitive Composite",
         "Episodic Memory",
         "Global Cognition",
-        "Instrumental ADLs",
+        "Functional Independence",
         "Anxiety",
         "Depression"
       ),
@@ -144,8 +144,8 @@ plot_comparisons <- function(
       ) +
       ggplot2::facet_wrap(~ y) +
       ggplot2::labs(x = NULL) +
-      ggplot2::scale_fill_manual(values = c("green2", "deepskyblue")) +
-      ggplot2::scale_colour_manual(values = c("green4", "navyblue")) +
+      ggplot2::scale_fill_manual(values = c("green2", "red")) +
+      ggplot2::scale_colour_manual(values = c("green4", "red3")) +
       ggplot2::geom_text(
         data = vars[vars$var == i, ],
         ggplot2::aes(x = 1.5, y = y_max, label = stats_txt),
@@ -175,14 +175,15 @@ plot_comparisons <- function(
         ggplot2::aes(
           y = mean,
           ymin = lower,
-          ymax = upper
+          ymax = upper,
+          colour = mPA
         ),
         size = .33
       ) +
       ggplot2::facet_wrap(~ y_nam) +
       ggplot2::labs(y = vars[vars$var == i, ]$name, x = NULL) +
-      ggplot2::scale_fill_manual(values = c("green2", "deepskyblue")) +
-      ggplot2::scale_colour_manual(values = c("green4", "navyblue")) +
+      ggplot2::scale_fill_manual(values = c("green2", "red")) +
+      ggplot2::scale_colour_manual(values = c("green4", "red3")) +
       ggplot2::scale_y_continuous(
         limits = c(vars[vars$var == i, ]$y_min, vars[vars$var == i, ]$y_max)
       ) +

@@ -1,14 +1,14 @@
 #' Draw a directed acyclic graphs
-#' 
+#'
 #' Takes in sets of covariates derived by \code{adjustment_table}
 #' and changes them to equations that can be used as \code{formula}.
-#' 
+#'
 #' @param plot Logical. Should ggplot be returned (`TRUE`, default) or
 #'   tidy_daggity object (`FALSE`).
-#' 
+#'
 #' @returns Directed acyclic graph representing causal assumptions
 #'   for the analysis.
-#' 
+#'
 #' @export
 draw_dag <- function(plot = TRUE) {
   # Node labels and coordinates:
