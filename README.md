@@ -15,6 +15,7 @@ You can install the current version of midphysac from GitHub via:
 ``` r
 # install.packages("pak")
 pak::pak("josefmana/midphysac")
+```
 
 ## Georgi et al. ([2026](https://doi.org/10.1016/j.actpsy.2026.106478))
 ### Release v1.0.0
