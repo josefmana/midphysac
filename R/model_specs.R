@@ -18,10 +18,10 @@ model_specs <- function(table) {
         outcome = y,
         exposure = table[i, ]$exposure,
         effect = table[i, ]$effect,
-        moderator = dplyr::if_else(
+        moderator = ifelse(
           is.na(table[i, "moderator"]),
-          true = "1",
-          false = as.character(table[i, "moderator"])
+          yes = "1",
+          no = as.character(table[i, "moderator"])
         ),
         term = table[i , ]$term,
         likelihood = dplyr::case_when(

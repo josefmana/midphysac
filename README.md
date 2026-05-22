@@ -1,8 +1,8 @@
-# midphysac
-
 <!-- badges: start -->
 [![DOI](https://zenodo.org/badge/843845244.svg)](https://doi.org/10.5281/zenodo.20339953)
 <!-- badges: end -->
+
+# midphysac
 
 The goal of **midphysac** is to accompany the articles about putative effect of
 high-level midlife physical activity maintained till elderly life on (super)aging
@@ -31,5 +31,4 @@ Georgi, H., Mana, J., Schneiderova, M., Dadova, K., Ticha, Z., Vojtechova, I.,
 health, functional status, and episodic memory in old-old women: Preliminary
 study. *Acta Psychologica, 264*, 106478.
 <https://doi.org/10.1016/j.actpsy.2026.106478>
-
 
