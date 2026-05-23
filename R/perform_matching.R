@@ -38,7 +38,7 @@ perform_matching <- function(
     formula = unique(sets$matching),
     estimand = "ATC"
   )
-  # dirty trick to add health relate covatiates ----
+  # dirty trick to add health related covariates ----
   X <- X |>
     dplyr::full_join(
       X |> dplyr::mutate(formula = glue::glue(

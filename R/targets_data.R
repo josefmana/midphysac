@@ -2,17 +2,34 @@
 targets_data <- list(
   targets::tar_target(
     datafile,
-    command = here::here("data-raw", "COSACTIW_NANOK_pro-jamovi-oprav.xlsx"),
+    command = here::here("data-raw", "COSACTIW_NANOK_KOKOSA.xlsx"),
     format = "file"
   ),
   targets::tar_target(
     data,
+    cue = targets::tar_cue("always"),
     command = import_data(
       file = datafile,
-      sheet = "cosactiw+nanok",
+      sheet = "cosactiw+nanok+kokosa",
       norms = memory_norms,
       thresholds = memory_thresholds,
       thres_type = "mean"
-    )
-  )
+    ) |>
+      dplyr::filter(mPA %in% c("COSACTIW", "NANOK")) |>
+      dplyr::mutate(mPA = factor(mPA, levels = c("COSACTIW", "NANOK")))
+  ),
+  #tarchetypes::tar_map(
+  #  values = tibble::tibble(
+  #    branch = c("cosactiw_nanok", "cosactiw_kokosa"),
+  #    groups = list(c("COSACTIW", "NANOK"), c("COSACTIW", "KOKOSA"))
+  #  ),
+  #  names = tidyselect::all_of("branch"),
+  #  targets::tar_target(
+  #    data,
+  #    command = data_raw |>
+  #      dplyr::filter(mPA %in% groups) |>
+  #      dplyr::mutate(mPA = factor(mPA, levels = groups))
+  #  )
+  #),
+  NULL
 )

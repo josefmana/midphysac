@@ -1,9 +1,4 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-pvlt_excl|stem|2576b53e5b6acfa6|a3e51f43bfde3d88|2c530c1562a7fbd1|-779303777|/Users/josefmana/Desktop/geropsychology/midphys/data-raw/PVLT_2012_NANOK_export_fin.xls - vyřazení.csv|t20064.5053726124s|s1221b|1221|file|local|vector|||0.007||
-nanok_demo|stem|6a9869104a237490|0dad203706a5a123|2c530c1562a7fbd1|-2128590642|/Users/josefmana/Desktop/geropsychology/midphys/data-raw/data_NANOK_2012-2013-2014_pro-Ondreje-Rydla_opr-MoCA.xls|t20064.5823654988s|s493056b|493056|file|local|vector|||0.001||
-pvlt_data|stem|4f53868b3b126905|f0cd98d29a68d36b|2c530c1562a7fbd1|-426978723|/Users/josefmana/Desktop/geropsychology/midphys/data-raw/PVLT_2012_NANOK_export_fin.xls - PVLT Czech.csv|t20064.5050595988s|s94800b|94800|file|local|vector|||0.001||
-ravlt_norms|stem|d5b60d246140f444|dc3afac732cfd46c|2c530c1562a7fbd1|-1138026765|/Users/josefmana/Desktop/geropsychology/midphys/data-raw/ravlt_analyza.csv|t20064.4632089475s|s73291b|73291|file|local|vector|||0||
-datafile|stem|c0031892a04da9b2|c3319e2db125bffc|2c530c1562a7fbd1|789339568|/Users/josefmana/Desktop/geropsychology/midphys/data-raw/COSACTIW_NANOK_pro-jamovi-oprav.xlsx|t20414.3196561468s|s1318701b|1318701|file|local|vector|||0.027||
 dag|stem|9a3c2b14132ff247|037e4d80d9eeec84|83ee9bcaa56cdbe9|-1819100180||t20414.4327960822s|s616b|616|rds|local|vector|||0.47||
 dag_plot|stem|7aa3cfe853f8aa52|8fb7b9bee68b367d|83ee9bcaa56cdbe9|-526697457||t20414.4327977689s|s255721b|255721|rds|local|vector|||0.031||
 memory_norms|stem|0ee07b83d2fffb47|1a22bf00e66a506d|9c3d6f17220c8f4e|628309221||t20414.4328036176s|s610b|610|rds|local|vector|||0.27|There was 1 warning in `dplyr::mutate()`. ℹ In argument: `ID = as.numeric(Jméno)`. Caused by warning: ! NAs introduced by coercion|
@@ -16,23 +11,19 @@ model_diagnose|function|336ec1f2a730c735
 model_fit|function|6cffcc38ebafb2a2
 save_tables|function|9a9bf38b0fd69ae9
 adjustment_sets|stem|5dad8f5ce4d45a00|daa8c5f1a8b005ce|db19e8f1ee3dc80a|-1854510410||t20416.7883048713s|s505b|505|rds|local|vector|||0.671||
-data|stem|9846cb011975a1db|d37010a0d207e2eb|982c3d02766c0ee6|33550471||t20425.5528898508s|s12075b|12075|rds|local|vector|||0.277||
-matches|stem|e1954bb4efaa77f2|18685e365704b69d|d91dbb1bed5c75e6|292580782||t20425.5952373093s|s2413854b|2413854|rds|local|vector|||1.085||
-results_plot_comparisons|stem|2ac39c2e6c71a898|d566bca951b115a9|d7fc2bfb75a9fb3a|-1551094388||t20426.4150995949s|s256510b|256510|rds|local|vector|||0.248||
-cognition_plot|stem|0c3bd3838956abd3|2dd5b2e0b566f8b1|93f261c217141157|-34129545||t20426.6255514223s|s406948b|406948|rds|local|vector|||0.34|Removed 6 rows containing non-finite outside the scale range (`stat_ydensity()`).. Removed 6 rows containing non-finite outside the scale range (`stat_boxplot()`).. Removed 6 rows containing non-finite outside the scale range (`stat_summary()`).|
-specs|stem|b01027c6b1252ac1|e595c95487dbd6d0|d3886a4802666c11|-2050852063||t20426.6296199736s|s1629b|1629|rds|local|vector|||0.213||
-models|stem|f53c904947cbd36d|e6c71802e003d0df|5e1cc234784c5f25|-1655822660||t20426.6298894182s|s14941154b|14941154|rds|local|vector|||20.946|non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!|
-results|stem|f0915037e75b5548|017f848dd6546ca3|962912457868d7b1|-322906963||t20426.6300666144s|s10228b|10228|rds|local|vector|||14.505|Using an external vector in selections was deprecated in tidyselect 1.1.0. ℹ Please use `all_of()` or `any_of()` instead.   # Was:   data %>% select(estimate)    # Now:   data %>% select(all_of(estimate))  See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.|
-diagnostics|stem|abce222feaf22e1a|468a9a0848bf7b40|5c6c17590f253977|1806411824||t20426.6303306309s|s115858569b|115858569|rds|local|vector|||16.82||
-results_tables|stem|931d4b8bd0fdd8a8|cd9bdb0081e4bfb2|e15291d40c15941c|1927127624||t20426.6303329087s|s25131b|25131|rds|local|vector|||0.128||
-results_plot|stem|82fb20db03467cca|154cf70c6b5d3a9d|93f261c217141157|-1141224548||t20426.6303485474s|s1745461b|1745461|rds|local|vector|||1.096|Removed 1 row containing non-finite outside the scale range (`stat_smooth()`).. Removed 1 row containing missing values or values outside the scale range (`geom_point()`).|
+pvlt_excl|stem|2576b53e5b6acfa6|a3e51f43bfde3d88|2c530c1562a7fbd1|-779303777|/Users/josefmana/Desktop/geropsychology/midphysac/data-raw/PVLT_2012_NANOK_export_fin.xls - vyřazení.csv|t20064.5053726124s|s1221b|1221|file|local|vector|||0.006||
+nanok_demo|stem|6a9869104a237490|0dad203706a5a123|2c530c1562a7fbd1|-2128590642|/Users/josefmana/Desktop/geropsychology/midphysac/data-raw/data_NANOK_2012-2013-2014_pro-Ondreje-Rydla_opr-MoCA.xls|t20064.5823654988s|s493056b|493056|file|local|vector|||0||
+pvlt_data|stem|4f53868b3b126905|f0cd98d29a68d36b|2c530c1562a7fbd1|-426978723|/Users/josefmana/Desktop/geropsychology/midphysac/data-raw/PVLT_2012_NANOK_export_fin.xls - PVLT Czech.csv|t20064.5050595988s|s94800b|94800|file|local|vector|||0||
+ravlt_norms|stem|d5b60d246140f444|dc3afac732cfd46c|2c530c1562a7fbd1|-1138026765|/Users/josefmana/Desktop/geropsychology/midphysac/data-raw/ravlt_analyza.csv|t20064.4632089475s|s73291b|73291|file|local|vector|||0.001||
+specs|stem|807a93a20590a818|e595c95487dbd6d0|b4c7efc2c273fc1d|-2050852063||t20595.7531133088s|s1650b|1650|rds|local|vector|||0.183||
+datafile|stem|03c550b6ad7140d1|796494d4bb998125|2c530c1562a7fbd1|789339568|/Users/josefmana/Desktop/geropsychology/midphysac/data-raw/COSACTIW_NANOK_KOKOSA.xlsx|t20595.7658217593s|s1811000b|1811000|file|local|vector|||0.005||
 compare_means|function|a28c4f10a57b110b
 ravlt_ss|function|352eb7a38e2a1d4e
 remove_brackets|function|db1d8fe897b2aba1
 compute_predictions|function|661d9d78e7e88c38
 plot_compare_results|function|c7083db9fa542a01
 rprint|function|be663e81e9071354
-plot_results|function|a5f82efb969cfdb9
+plot_results|function|703832f48b9616af
 set2equation|function|fdff19801ee50ec2
 draw_dag|function|2474868b01ba3dc9
 g_computations|function|3f29a4abd19f002d
@@ -41,14 +32,24 @@ compute_means|function|c1ff69109575114f
 extract_means|function|6fbfd242a9e5258c
 perform_matching|function|83c45a26d373c227
 gt_apa_table|function|41c255f48bb79457
-import_data|function|0a1e5aae8f69eeb3
+import_data|function|d46251d93c3fc061
+plot_comparisons|function|3e99d6f55aea41bb
 fit_models|function|d2487ca07cf35279
 boxcox_transform|function|5ca39f3f3d0ec6b0
 diagnose_models|function|f58a436b203f2859
 extract_thresholds|function|7aaf85198942b392
-model_specs|function|212eb9c51a2d8b7b
+model_specs|function|ce6377c402a20e1b
 zerolead|function|4c0b2bf2f68d8ea6
 adjustment_table|function|2e4cd8b7ee990645
 table_single|function|87e957ea6ecbe045
 stat_test|function|58875e8e26d01cbe
 table_results|function|ce724e9cc6f806dc
+data|stem|c8f3355d21520540|bf92b3504c6996cf|b955434e72d3448d|33550471||t20596.3148463276s|s12535b|12535|rds|local|vector|||0.253||
+matches|stem|3ccb538f88cb569c|18685e365704b69d|87e575397c49baf5|292580782||t20596.3148730559s|s3305936b|3305936|rds|local|vector|||1.214||
+models|stem|1a773fbad45c82ec|e6c71802e003d0df|ce8cda267a8be125|-1655822660||t20596.3151580196s|s15957354b|15957354|rds|local|vector|||21.91|non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!. non-integer #successes in a binomial glm!. glm.fit: fitted probabilities numerically 0 or 1 occurred. non-integer #successes in a binomial glm!|
+results|stem|ef8ae47311ce8d41|017f848dd6546ca3|8238da51abd32d75|-322906963||t20596.3153596587s|s10222b|10222|rds|local|vector|||16.566|Using an external vector in selections was deprecated in tidyselect 1.1.0. ℹ Please use `all_of()` or `any_of()` instead.   # Was:   data %>% select(estimate)    # Now:   data %>% select(all_of(estimate))  See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.|
+diagnostics|stem|fac591898b7cb049|468a9a0848bf7b40|4fb63649343131f6|1806411824||t20596.315815543s|s141435575b|141435575|rds|local|vector|||22.93||
+results_tables|stem|28461d1ff29a4c92|cd9bdb0081e4bfb2|7c385259756ace33|1927127624||t20596.3158183242s|s25748b|25748|rds|local|vector|||0.157||
+results_plot|stem|9270a49435cc191c|154cf70c6b5d3a9d|883fe726abc61b2e|-1141224548||t20596.3158433545s|s3870337b|3870337|rds|local|vector|||1.122|Removed 1 row containing non-finite outside the scale range (`stat_smooth()`).. Removed 1 row containing missing values or values outside the scale range (`geom_point()`).|
+results_plot_comparisons|stem|741bf7f2e858daf6|d566bca951b115a9|0d87dcbbfe15ec8f|-1551094388||t20596.315845617s|s396170b|396170|rds|local|vector|||0.058||
+cognition_plot|stem|f5c7c7acb4dae515|2dd5b2e0b566f8b1|883fe726abc61b2e|-34129545||t20596.3158543859s|s910016b|910016|rds|local|vector|||0.462|Removed 6 rows containing non-finite outside the scale range (`stat_ydensity()`).. Removed 6 rows containing non-finite outside the scale range (`stat_boxplot()`).. Removed 6 rows containing non-finite outside the scale range (`stat_summary()`).|

@@ -11,7 +11,7 @@
 #'   values of  memory tasks. Computed by \code{extract_thresholds}.
 #' @param thres_type Character.
 #'
-#' @returns A tibble with following columns:
+#' @returns A tibble with relevant columns.
 #'
 #' @export
 import_data <- function(
@@ -19,22 +19,27 @@ import_data <- function(
     sheet,
     norms,
     thresholds,
-    thres_type = "mean") {
-  # Read the file:
+    thres_type = "mean"
+) {
   readxl::read_xlsx(file, sheet = sheet, na = "NA") |>
-    # Keep variables of interest:
     dplyr::select(
-      1, Study, Age, `Education-2-cat`, Type_of_prevailing_occupation_during_life, Marital_status, # predictors
+      1, Study, Age, `Education-2-cat`, `PA...4`,
       `Regular-PA`, MMSE, GDS15, GAI, FAQ, `Total-mental-activities`, Health, # outcomes
-      RAVLT_delayed_recall, TMT_B_time, Spon_sem, VF_animals, # SuperAging variables raw scores
+      `Memory test`, RAVLT_delayed_recall, TMT_B_time, Spon_sem, VF_animals, # SuperAging variables raw scores
       `SA-TMT-B-new`, `SA-BNT-new`, `SA-VF`, # SuperAging indicators
       Z_RAVLT_PVLT_delayed_recall, Z_TMT_B_uds, Z_BNT_new, Z_VF_uds, # SuperAging variables z scores
+      Type_of_prevailing_occupation_during_life, Marital_status,
       `Do_you_smoke?`, Hypertension, Diabetes # health-related covariates
     ) |>
     dplyr::mutate(
       mPA = factor(
-        Study,
-        labels = c("COSACTIW","NANOK")
+        dplyr::case_when(
+          Study == "COSACTIW" ~ 1,
+          Study == "KOKOSA"   ~ 2,
+          Study == "NANOK"    ~ 3
+        ),
+        levels = 1:3,
+        labels = c("COSACTIW", "KOKOSA", "NANOK")
       ),
       Cosactiw = factor(
         dplyr::if_else(Study == "COSACTIW", 1, 0)
@@ -57,9 +62,13 @@ import_data <- function(
         # re-calculate z-score for memory tasks based on table norms
         # from data provided to us by original authors
         sapply(seq_len(dplyr::n()), function(i) {
+          test <- dplyr::case_when(
+            `Memory test`[i] == "PVLT"  ~ "pvlt",
+            `Memory test`[i] == "RAVLT" ~ "ravlt"
+          )
           score <- as.integer(RAVLT_delayed_recall[i])
-          M <- norms[ifelse(Study[i] == "NANOK", "pvlt", "ravlt"), "M", Education[i], Age_bin[i]]
-          SD <- norms[ifelse(Study[i] == "NANOK", "pvlt", "ravlt"), "S", Education[i], Age_bin[i]]
+          M  <- norms[test, "M", Education[i], Age_bin[i]]
+          SD <- norms[test, "S", Education[i], Age_bin[i]]
           (score - M) / SD
         }),
         use.names = FALSE
@@ -68,7 +77,10 @@ import_data <- function(
         sapply(seq_len(dplyr::n()), function(i) {
           # helper column showing thresholds for cognitive SA
           with(thresholds, {
-            t <- dplyr::case_when(Study[i] == "NANOK" ~ "pvlt", Study[i] == "COSACTIW" ~ "ravlt")
+            t <- dplyr::case_when(
+              `Memory test`[i] == "PVLT"  ~ "pvlt",
+              `Memory test`[i] == "RAVLT" ~ "ravlt"
+            )
             e <- as.character(Education[i])
             get(paste0("thresh_", thres_type))[task == t & edu == e]
           })
@@ -80,11 +92,51 @@ import_data <- function(
         # memory task to qualify for SA
         RAVLT_delayed_recall >= cutoff, 1, 0
       ),
+      # Re-calculate SA indexes according to published project-specific rules
+      # Georgi et al. (2024), <https://doi.org/10.29364/epsy.493>, Table 1
+      # Georgi et al. (2026), <https://doi.org/10.1016/j.actpsy.2026.106478>, Data analysis
+      `SA-TMT-B-final` = dplyr::case_when(
+        Education == "lower"  & TMT_B_time >  249 ~ 0,
+        Education == "lower"  & TMT_B_time <= 249 ~ 1,
+        Education == "higher" & TMT_B_time >  223 ~ 0,
+        Education == "higher" & TMT_B_time <= 223 ~ 1,
+        .default = NA_real_
+      ),
+      `SA-BNT-final` = dplyr::case_when(
+        Education == "lower"  & Spon_sem <  19 ~ 0,
+        Education == "lower"  & Spon_sem >= 19 ~ 1,
+        Education == "higher" & Spon_sem <  23 ~ 0,
+        Education == "higher" & Spon_sem >= 23 ~ 1,
+        .default = NA_real_
+      ),
+      `SA-VF-final` = dplyr::case_when(
+        Education == "lower"  & VF_animals <  12 ~ 0,
+        Education == "lower"  & VF_animals >= 12 ~ 1,
+        Education == "higher" & VF_animals <  13 ~ 0,
+        Education == "higher" & VF_animals >= 13 ~ 1,
+        .default = NA_real_
+      ),
+      `SA-memory-final` = dplyr::case_when(
+        Education == "lower"  & `Memory test` == "PVLT"  & RAVLT_delayed_recall <  10 ~ 0,
+        Education == "lower"  & `Memory test` == "PVLT"  & RAVLT_delayed_recall >= 10 ~ 1,
+        Education == "higher" & `Memory test` == "PVLT"  & RAVLT_delayed_recall <  11 ~ 0,
+        Education == "higher" & `Memory test` == "PVLT"  & RAVLT_delayed_recall >= 11 ~ 1,
+        Education == "lower"  & `Memory test` == "RAVLT" & RAVLT_delayed_recall <   8 ~ 0,
+        Education == "lower"  & `Memory test` == "RAVLT" & RAVLT_delayed_recall >=  8 ~ 1,
+        Education == "higher" & `Memory test` == "RAVLT" & RAVLT_delayed_recall <  11 ~ 0,
+        Education == "higher" & `Memory test` == "RAVLT" & RAVLT_delayed_recall >= 11 ~ 1,
+        .default = NA_real_
+      ),
+      # Needs at least the cut-off in a memory task
+      # and at least average performance in all remaining tasks
+      # to be labelled SA = 1
       SA = factor(dplyr::if_else(
-        # needs at least the cut-off in a memory task
-        # and at least average performance in all remaining tasks
-        # to be labelled SA = 1
         (`SA-TMT-B-new` + `SA-BNT-new` + `SA-VF` + Delayed_recall_SA) == 4,
+        true = 1,
+        false = 0
+      )),
+      SA_comp = factor(dplyr::if_else(
+        (`SA-TMT-B-final` + `SA-BNT-final` + `SA-VF-final` + `SA-memory-final`) == 4,
         true = 1,
         false = 0
       )),
@@ -121,25 +173,34 @@ import_data <- function(
     # Re-naming variables:
     dplyr::rename(
       "ID" = "ID...1",
+      "A2PA" = "PA...4",
       "Total_MA" = "Total-mental-activities",
       "Delayed_recall_raw" = "RAVLT_delayed_recall",
       "Delayed_recall_z" = "Z_RAVLT_PVLT_delayed_recall",
+      "Delayed_reacall_SA_comp" = "SA-memory-final",
       "TMT_B_raw" = "TMT_B_time",
       "TMT_B_z" = "Z_TMT_B_uds",
       "TMT_B_SA" = "SA-TMT-B-new",
+      "TMT_B_SA_comp" = "SA-TMT-B-final",
       "BNT_30_raw" = "Spon_sem",
       "BNT_30_z" = "Z_BNT_new",
       "BNT_30_SA" = "SA-BNT-new",
+      "BNT_30_SA_comp" = "SA-BNT-final",
       "VF_Animals_raw" = "VF_animals",
       "VF_Animals_z" = "Z_VF_uds",
       "VF_Animals_SA" = "SA-VF",
+      "VF_Animals_SA_comp" = "SA-VF-final",
       "Smoking" = "Do_you_smoke?"
     ) |>
     dplyr::select(
-      ID, mPA, Cosactiw, Age, Age_bin, Education,
+      ID, A2PA, mPA, Cosactiw, Age, Age_bin, Education,
       SA, cPA, Z_SA, MMSE, GDS15, GAI, FAQ, Depr, Anx,
       Total_MA, Health, Profession, Status,
-      cutoff, tidyselect::ends_with("_raw"), tidyselect::ends_with("_z"), tidyselect::ends_with("_SA"),
+      cutoff,
+      tidyselect::ends_with("_raw"),
+      tidyselect::ends_with("_z"),
+      tidyselect::ends_with("_SA"),
+      tidyselect::ends_with("_comp"),
       Smoking, Hypertension, Diabetes
     )
 }
