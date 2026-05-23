@@ -63,7 +63,8 @@ plot_results <- function(
         dplyr::select(Outcome, label)
     }) |>
       dplyr::mutate(
-        x = "NC",
+        #x = "NC",
+        x = "PAW",
         y = unlist(dplyr::case_when(
           type == 1 ~ list(c(4.77, 1, -1.4, 13.33, 16.3, 1, 1, .24, 4.12, .86, -1.9, 11.5, 14.12, .86, .86, .1)),
           type == 2 ~ list(c(-1.99, -3.85, -3.53, -2.02, -2.4, -4.4, -4, -2.5))
@@ -90,10 +91,11 @@ plot_results <- function(
             )
           })
         }), use.names = FALSE),
-        mPA = dplyr::case_when(
-          mPA == "COSACTIW" ~ "PAW",
-          mPA == "NANOK" ~ "NC"
-        )
+        #mPA = dplyr::case_when(
+        #  mPA == "COSACTIW" ~ "PAW",
+        #  mPA == "NANOK" ~ "NC"
+        #),
+        NULL
       )
     # Extract variable names:
     vars <- lapply(rlang::set_names(unique(input$type)), function(i) {

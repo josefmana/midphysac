@@ -25,8 +25,16 @@ targets_data <- list(
       thresholds = memory_thresholds,
       thres_type = "mean"
     ) |>
-      dplyr::filter(mPA %in% c("COSACTIW", "NANOK")) |>
-      dplyr::mutate(mPA = factor(mPA, levels = c("COSACTIW", "NANOK")))
+      dplyr::filter(mPA %in% c("COSACTIW", "KOKOSA")) |>
+      dplyr::mutate(
+        SA = SA_comp,
+        mPA = factor(
+          dplyr::if_else(A2PA < 4, "PAW", "non-PAW"),
+          levels = c("PAW", "non-PAW"),
+          ordered = TRUE
+        ),
+        Cosactiw = dplyr::if_else(mPA == "PAW", 1, 0)
+      )
   ),
   #tarchetypes::tar_map(
   #  values = tibble::tibble(

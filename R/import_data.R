@@ -150,9 +150,8 @@ import_data <- function(
         na.rm = TRUE
       ),
       cPA = factor(dplyr::case_when(
-        Study == "NANOK"    ~ 2 - `Regular-PA`,
-        Study == "COSACTIW" ~ `Regular-PA`,
-        Study == "KOKOSA"   ~ `Regular-PA-without walking, chores`
+        Study == "NANOK" ~ 2 - `Regular-PA`,
+        TRUE             ~ `Regular-PA-without walking, chores`
       )),
       Profession = factor(dplyr::case_when(
         Type_of_prevailing_occupation_during_life == 1 ~ "manual",
@@ -204,7 +203,7 @@ import_data <- function(
     dplyr::select(
       ID, A2PA, mPA, Cosactiw, Age, Age_bin, Education,
       tidyselect::starts_with("cPA"),
-      SA, Z_SA, MMSE, GDS15, GAI, FAQ, Depr, Anx,
+      SA, SA_comp, Z_SA, MMSE, GDS15, GAI, FAQ, Depr, Anx,
       Total_MA, Health, Profession, Status,
       cutoff,
       tidyselect::ends_with("_raw"),

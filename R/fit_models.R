@@ -26,8 +26,8 @@ fit_models <- function(
   # Optionally set orthogonal contrasts:
   if (contr) {
     for (i in names(data)) {
-      if (is.factor(data[, i])) {
-        contrasts(data[, i]) <- contr.sum(length(levels(data[, i])))
+      if (is.factor(data[[i]])) {
+        contrasts(data[[i]]) <- contr.sum(length(levels(data[[i]])))
       }
     }
   }

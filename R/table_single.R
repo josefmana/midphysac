@@ -93,8 +93,11 @@ table_single <- function(tab, gcomp = FALSE, title = "") {
     ) |>
     gt::cols_label(
       Outcome ~ "Presumed outcome",
-      `mPA = COSACTIW` ~ "PAW",
-      `mPA = NANOK` ~ "NC",
+      #`mPA = COSACTIW` ~ "PAW",
+      #`mPA = NANOK` ~ "NC",
+      #`mPA = KOKOSA` ~ "nonPAW",
+      `mPA = PAW` ~ "PAW (N = 265)",
+      `mPA = non-PAW` ~ "non-PAW (N = 34)",
       tidyselect::contains("sig") ~ "sig.",
       tidyselect::ends_with("_p") ~ "p value"
     ) |>
