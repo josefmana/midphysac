@@ -1,6 +1,5 @@
 # files not supposed to be shared
 Rplots.pdf
-data-raw/
 docs/
 figures/
 tables/
