@@ -6,11 +6,21 @@ targets_data <- list(
     format = "file"
   ),
   targets::tar_target(
+    actfile,
+    command = here::here("data-raw", "PA_combined_output.xlsx"),
+    format = "file"
+  ),
+  targets::tar_target(
+    activity_data,
+    command = readxl::read_xlsx(actfile, "Summary")
+  ),
+  targets::tar_target(
     data,
     cue = targets::tar_cue("always"),
     command = import_data(
       file = datafile,
       sheet = "cosactiw+nanok+kokosa",
+      acts = activity_data,
       norms = memory_norms,
       thresholds = memory_thresholds,
       thres_type = "mean"

@@ -285,11 +285,11 @@ sheet1 <- bind_rows(
   cosactiw_out %>%
     filter(!is.na(`WHO-PA`)) %>%
     select(ID, all_of(pa_cols)) %>%
-    mutate(study_id = "COSACTIW", .after = ID),
+    mutate(Study = "COSACTIW", .after = ID),
   kokosa_out %>%
     filter(!is.na(`WHO-PA`)) %>%
     select(ID, all_of(pa_cols)) %>%
-    mutate(study_id = "KOKOSA", .after = ID)
+    mutate(Study = "KOKOSA", .after = ID)
 )
 
 # ── 9. Save ───────────────────────────────────────────────────
