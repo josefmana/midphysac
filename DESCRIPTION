@@ -39,4 +39,5 @@ Imports:
     glue,
     rstatix
 Suggests: 
-    rmarkdown
+    rmarkdown,
+    writexl
